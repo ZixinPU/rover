@@ -6,7 +6,6 @@ import application.plateau.Plateau;
 import application.rover.Rover;
 import exception.CannotMoveException;
 import org.apache.commons.lang3.tuple.Pair;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -37,9 +36,7 @@ public class RoverNavigationTest {
         Rover roverFinalPosition = controlOneRoverOnceNavigation(rover, command);
 
         // Then
-        assertThat(roverFinalPosition.getX()).isEqualTo(1);
-        assertThat(roverFinalPosition.getY()).isEqualTo(2);
-        assertThat(roverFinalPosition.getOrientation()).isEqualTo(W);
+        assertThat(roverFinalPosition).isEqualTo(new Rover(1, 2, W));
     }
 
     @Test
@@ -79,9 +76,7 @@ public class RoverNavigationTest {
         Rover roverFinalPosition = controlOneRoverAllNavigation(order, roverNavigationCommands, plateau, getRoversCoordinate());
 
         // Then
-        assertThat(roverFinalPosition.getX()).isEqualTo(1);
-        assertThat(roverFinalPosition.getY()).isEqualTo(3);
-        assertThat(roverFinalPosition.getOrientation()).isEqualTo(N);
+        assertThat(roverFinalPosition).isEqualTo(new Rover(1, 3, N));
     }
 
     @Test
@@ -99,9 +94,9 @@ public class RoverNavigationTest {
     }
 
     @Test
-    public void should_throw_exception_when_a_duplicate_coordinate_is_not_enough() {
+    public void should_throw_exception_when_a_duplicate_coordinate() {
         // Given
-        List<Command> commands = Arrays.asList(L, M, L, M, L, M, L, M, M);
+        List<Command> commands = Arrays.asList(M, M);
         int order = 1;
         RoverNavigationCommands roverNavigationCommands = new RoverNavigationCommands(roverForDuplicateCoordinateExceptionTest, commands);
 

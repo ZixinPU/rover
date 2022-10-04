@@ -34,8 +34,7 @@ public class RoversNavigationTest {
 
         // Then
         assertThat(roversFinalPositionStringList).hasSize(2);
-        assertThat(roversFinalPositionStringList.get(0)).isEqualTo("1 3 N");
-        assertThat(roversFinalPositionStringList.get(1)).isEqualTo("5 1 E");
+        assertThat(roversFinalPositionStringList).isEqualTo(Arrays.asList("1 3 N", "5 1 E"));
     }
 
     @Test
